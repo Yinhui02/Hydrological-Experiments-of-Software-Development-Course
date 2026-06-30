@@ -6,7 +6,7 @@ Date: Spring Semester 2026
 
 The hydrological experiments required in the course utilize OpenCode AI for auxiliary programming development, and each experiment includes a prompt_log.md to record interactions with the AI.
 
-<big><strong>Hydrological Experiment Introduction</strong></big>   
+## Hydrological Experiment Introduction   
 <small><strong> 1. Short-term Rainfall Forecasting & Alert System </strong></small>   
 This experiment focuses on building a real-time rainfall monitoring system that integrates external weather APIs, implements threshold-based alerting logic, and displays results through a web dashboard. You will apply AI-assisted development techniques to create a functional system for urban flood management.  
 <small><strong> 2. Hydrological Modeling: SCS-CN Runoff Calculation </strong></small>  
