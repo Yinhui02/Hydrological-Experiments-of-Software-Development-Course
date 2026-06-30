@@ -1,0 +1,3 @@
+example:
+[2026-06-18 15:30:22] | Xi'an RED — Rainfall: 22.5 mm/h
+[2026-06-20 16:05:47] | Kunming RED — Rainfall: 31.2 mm/h

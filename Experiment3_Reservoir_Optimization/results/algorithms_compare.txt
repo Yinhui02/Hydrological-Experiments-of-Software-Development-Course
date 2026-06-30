@@ -1,0 +1,76 @@
+============================================================
+ALGORITHM COMPARISON ANALYSIS: SLSQP vs L-BFGS-B
+============================================================
+
+1. Convergence Behavior:
+   SLSQP:    success=False, message='Positive directional derivative for linesearch'
+   L-BFGS-B: success=False, message='ABNORMAL_TERMINATION_IN_LNSRCH'
+
+2. Solution Quality:
+   Metric                         SLSQP                L-BFGS-B            
+   ----------------------------------------------------------------------
+   Total Revenue ($)              54,916.25            48,279.45           
+   Eco Deficit (m^3/s)            0.0000               0.0000              
+   Violations                     0                    0                   
+   Final Storage (m^3)            99,999.92            708,442.37          
+
+   Release Schedule (m^3/s):
+   Day      SLSQP                L-BFGS-B            
+   ------------------------------------------------
+   1        10.606482            12.126195           
+   2        10.606482            12.126195           
+   3        10.000000            12.229327           
+   4        10.000000            12.332459           
+   5        10.000000            12.592837           
+   6        25.416667            12.956258           
+   7        18.000000            13.224202           
+
+   Storage Profile (m^3):
+   Day      SLSQP                L-BFGS-B            
+   ------------------------------------------------
+   0        500,000.00           500,000.00          
+   1        879,599.99           748,296.77          
+   2        999,999.98           737,393.53          
+   3        999,999.97           544,779.69          
+   4        827,199.96           170,455.27          
+   5        999,999.95           119,234.14          
+   6        99,999.93            295,813.41          
+   7        99,999.92            708,442.37          
+
+3. Computational Performance:
+   SLSQP:    0.007008s, 6 iterations
+   L-BFGS-B: 0.024022s, 15 iterations
+   SLSQP is 3.4x faster
+
+4. Constraint Satisfaction:
+   SLSQP:
+     All constraints satisfied.
+   L-BFGS-B:
+     All constraints satisfied.
+
+5. Key Differences:
+   - SLSQP uses exact constraint handling (Lagrange multipliers).
+     Storage constraints are strictly enforced.
+   - L-BFGS-B uses penalty method for storage constraints,
+     which may cause small violations if penalty weight is insufficient.
+   - Revenue difference: $6636.80
+   - L-BFGS-B may fail to fully utilize high-price periods because
+     the penalty objective may not perfectly enforce storage constraints.
+
+6. Recommendation:
+   SLSQP is the preferred method for this reservoir optimization
+   problem because it natively handles nonlinear inequality
+   constraints (storage bounds) via exact Lagrange multiplier
+   methods. L-BFGS-B requires penalty-based approximation which
+   can compromise solution quality.
+
+7. Trade-off Analysis Summary:
+   - The Pareto frontier (tradeoff_analysis.png) shows the
+     relationship between hydropower revenue and ecological deficit.
+   - Prioritizing ecology (low deficit) requires reducing releases
+     during high-price periods, lowering revenue.
+   - Zero ecological deficit is achieved when all releases >= Q_eco.
+   - Maximum revenue occurs with largest possible releases during
+     high-price periods, but is limited by storage constraints.
+
+============================================================

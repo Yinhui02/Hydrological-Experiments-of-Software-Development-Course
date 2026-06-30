@@ -1,0 +1,21 @@
+SCS-CN Sensitivity Analysis — Observations
+===========================================
+
+1. CN vs Runoff (fixed P = 50 mm): 
+   - Runoff increases non-linearly as CN increases.
+   - The increase is gradual at low CN and sharp at high CN (> 90).
+   - At CN = 100, all rainfall becomes runoff (Q = P) because S = 0.
+
+2. Rainfall-Runoff curves:
+   - For low CN (e.g. 60), runoff only begins after significant rainfall because Ia is large.
+   - As CN increases, the curves shift upward, meaning more runoff for the same rainfall depth.
+   - All curves approach the Q = P line asymptotically as P grows large.
+   - The initial abstraction Ia creates a "threshold" effect — no runoff until P exceeds Ia.
+   
+3. Physical correctness:    - Q is always non-negative and never exceeds P.
+   - Higher CN always produces equal or greater runoff (monotonic).
+   - Q = 0 when P <= Ia (no runoff for small events on dry/wet soil).
+   - Q = P when CN = 100 (impervious surface).
+
+ [SAVED] cn_sensitivity.png
+ [SAVED] rainfall_runoff_comparison.png

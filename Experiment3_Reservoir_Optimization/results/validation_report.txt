@@ -1,0 +1,97 @@
+============================================================
+RESERVOIR OPTIMIZATION - VALIDATION REPORT
+============================================================
+
+Parameters:
+  Initial Storage: 500,000 m^3
+  V_min: 100,000 m^3
+  V_max: 1,000,000 m^3
+  Q_eco: 10 m^3/s
+  Q_max: 100 m^3/s
+  Time step: 86400 s (24 hours)
+  Power coeff: 250.1550 kW/(m^3/s)
+
+Optimizer Info:
+  Method: SLSQP
+  Success: False
+  Message: Positive directional derivative for linesearch
+  Iterations: 6
+
+------------------------------------------------------------
+1. Storage Bounds Check
+------------------------------------------------------------
+  Day 0: Storage = 500,000.00 m^3  [100,000 - 1,000,000]  OK
+  Day 1: Storage = 879,599.99 m^3  [100,000 - 1,000,000]  OK
+  Day 2: Storage = 999,999.98 m^3  [100,000 - 1,000,000]  OK
+  Day 3: Storage = 999,999.97 m^3  [100,000 - 1,000,000]  OK
+  Day 4: Storage = 827,199.96 m^3  [100,000 - 1,000,000]  OK
+  Day 5: Storage = 999,999.95 m^3  [100,000 - 1,000,000]  OK
+  Day 6: Storage =  99,999.93 m^3  [100,000 - 1,000,000]  VIOLATION
+  Day 7: Storage =  99,999.92 m^3  [100,000 - 1,000,000]  VIOLATION
+  Min storage: 99,999.92 m^3
+  Max storage: 999,999.98 m^3
+
+------------------------------------------------------------
+2. Release Bounds Check
+------------------------------------------------------------
+  Day 1: Release =    10.6065 m^3/s  [  10 -  100]  OK
+  Day 2: Release =    10.6065 m^3/s  [  10 -  100]  OK
+  Day 3: Release =    10.0000 m^3/s  [  10 -  100]  OK
+  Day 4: Release =    10.0000 m^3/s  [  10 -  100]  OK
+  Day 5: Release =    10.0000 m^3/s  [  10 -  100]  OK
+  Day 6: Release =    25.4167 m^3/s  [  10 -  100]  OK
+  Day 7: Release =    18.0000 m^3/s  [  10 -  100]  OK
+  Min release: 10.0000 m^3/s
+  Max release: 25.4167 m^3/s
+
+------------------------------------------------------------
+3. Mass Balance Check
+------------------------------------------------------------
+  Day 1: S_0 + (I-Q)*dt = 500,000.00 + (15 - 10.6065)*86400
+           = 879,599.99 vs S_opt[1]=879,599.99  error=0.000000  OK
+  Day 2: S_1 + (I-Q)*dt = 879,599.99 + (12 - 10.6065)*86400
+           = 999,999.98 vs S_opt[2]=999,999.98  error=0.000000  OK
+  Day 3: S_2 + (I-Q)*dt = 999,999.98 + (10 - 10.0000)*86400
+           = 999,999.97 vs S_opt[3]=999,999.97  error=0.000000  OK
+  Day 4: S_3 + (I-Q)*dt = 999,999.97 + (8 - 10.0000)*86400
+           = 827,199.96 vs S_opt[4]=827,199.96  error=0.000000  OK
+  Day 5: S_4 + (I-Q)*dt = 827,199.96 + (12 - 10.0000)*86400
+           = 999,999.95 vs S_opt[5]=999,999.95  error=0.000000  OK
+  Day 6: S_5 + (I-Q)*dt = 999,999.95 + (15 - 25.4167)*86400
+           = 99,999.93 vs S_opt[6]=99,999.93  error=0.000000  OK
+  Day 7: S_6 + (I-Q)*dt = 99,999.93 + (18 - 18.0000)*86400
+           = 99,999.92 vs S_opt[7]=99,999.92  error=0.000000  OK
+  Max mass balance error: 0.000000 m^3
+
+------------------------------------------------------------
+4. Revenue Calculation
+------------------------------------------------------------
+  Day 1: Q=10.6065 m^3/s, Energy=63678.35 kWh, Price=$0.0800/kWh, Revenue=$5094.27
+  Day 2: Q=10.6065 m^3/s, Energy=63678.35 kWh, Price=$0.0800/kWh, Revenue=$5094.27
+  Day 3: Q=10.0000 m^3/s, Energy=60037.20 kWh, Price=$0.0800/kWh, Revenue=$4802.98
+  Day 4: Q=10.0000 m^3/s, Energy=60037.20 kWh, Price=$0.0800/kWh, Revenue=$4802.98
+  Day 5: Q=10.0000 m^3/s, Energy=60037.20 kWh, Price=$0.1000/kWh, Revenue=$6003.72
+  Day 6: Q=25.4167 m^3/s, Energy=152594.55 kWh, Price=$0.1200/kWh, Revenue=$18311.35
+  Day 7: Q=18.0000 m^3/s, Energy=108066.96 kWh, Price=$0.1000/kWh, Revenue=$10806.70
+  Total Revenue: $54,916.25
+
+------------------------------------------------------------
+5. Ecological Compliance
+-----------------------------------------------------------
+  Day 1: Q=10.6065, Q_eco=10, Deficit=0.0000 m^3/s
+  Day 2: Q=10.6065, Q_eco=10, Deficit=0.0000 m^3/s
+  Day 3: Q=10.0000, Q_eco=10, Deficit=0.0000 m^3/s
+  Day 4: Q=10.0000, Q_eco=10, Deficit=0.0000 m^3/s
+  Day 5: Q=10.0000, Q_eco=10, Deficit=0.0000 m^3/s
+  Day 6: Q=25.4167, Q_eco=10, Deficit=0.0000 m^3/s
+  Day 7: Q=18.0000, Q_eco=10, Deficit=0.0000 m^3/s
+  Total ecological deficit: 0.0000 m^3/s
+
+------------------------------------------------------------
+6. Constraint Violation Summary
+------------------------------------------------------------
+  No constraint violations detected (within tolerance).
+
+============================================================
+Validation Result: PASS
+============================================================

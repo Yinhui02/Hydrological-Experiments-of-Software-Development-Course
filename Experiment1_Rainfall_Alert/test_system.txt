@@ -1,0 +1,55 @@
+============================================================
+RAINFALL MONITORING SYSTEM — VALIDATION REPORT
+============================================================
+
+[1] API Integration Test (weather_api.py)
+----------------------------------------
+Beijing: 0.0 mm/h, 21.1°C, overcast clouds
+Xi'an: 0.0 mm/h, 24.9°C, overcast clouds
+Zhengzhou: 0.0 mm/h, 26.9°C, overcast clouds
+Shanghai: 0.3 mm/h, 25.7°C, light rain
+Kunming: 0.0 mm/h, 16.9°C, overcast clouds
+  Cities fetched: 5/5
+    Beijing    | Rain: 0.00 mm/h  | Temp: 21.1C  | overcast clouds
+    Xi'an      | Rain: 0.00 mm/h  | Temp: 24.9C  | overcast clouds
+    Zhengzhou  | Rain: 0.00 mm/h  | Temp: 26.9C  | overcast clouds
+    Shanghai   | Rain: 0.65 mm/h  | Temp: 25.4C  | light rain
+    Kunming    | Rain: 0.00 mm/h  | Temp: 16.9C  | overcast clouds
+
+[2] Alert Threshold Test (alert.py)
+----------------------------------------
+  OK   |   3.0 mm/h -> green  (expected green ) | Below 10 mm/h
+  OK   |   9.9 mm/h -> green  (expected green ) | Below 10 mm/h (boundary)
+  OK   |  10.0 mm/h -> yellow (expected yellow) | Exactly 10 mm/h
+  OK   |  15.0 mm/h -> yellow (expected yellow) | Between 10-20 mm/h
+  OK   |  19.9 mm/h -> yellow (expected yellow) | Below 20 mm/h (boundary)
+  OK   |  20.0 mm/h -> red    (expected red   ) | Exactly 20 mm/h
+  OK   |  25.0 mm/h -> red    (expected red   ) | Above 20 mm/h
+  OK   |  50.0 mm/h -> red    (expected red   ) | Heavy rain
+
+  Threshold tests: 8/8 passed
+
+[3] Log File Timestamp Check
+----------------------------------------
+  Log entries: 3
+  VALID | [2026-06-30 04:40:43] | TestCity RED — Rainfall: 20.0 mm/h
+  VALID | [2026-06-30 04:40:43] | TestCity RED — Rainfall: 25.0 mm/h
+  VALID | [2026-06-30 04:40:43] | TestCity RED — Rainfall: 50.0 mm/h
+
+[4] Physical Reasonableness Check
+----------------------------------------
+  Beijing    | rf=0.0 temp=21.1C -> REASONABLE
+  Xi'an      | rf=0.0 temp=24.9C -> REASONABLE
+  Zhengzhou  | rf=0.0 temp=26.9C -> REASONABLE
+  Shanghai   | rf=0.7 temp=25.4C -> REASONABLE
+  Kunming    | rf=0.0 temp=16.9C -> REASONABLE
+
+============================================================
+SUMMARY
+============================================================
+  API: 5/5 cities responsive
+  Thresholds: 8/8 tests passed
+  Log file: Created
+  Dashboard: streamlit run dashboard.py
+  Dashboard URL: http://localhost:8501
+============================================================
